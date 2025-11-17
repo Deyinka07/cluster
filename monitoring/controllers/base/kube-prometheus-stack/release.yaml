@@ -21,10 +21,10 @@ spec:
     crds: CreateReplace
   driftDetection:
     mode: enabled
-  ignore:
-    - paths: ["/metadata/annotations/prometheus-operator-validated"]
-      target:
-        kind: PrometheusRule
+    ignore:
+      - paths: ["/metadata/annotations/prometheus-operator-validated"]
+        target:
+          kind: PrometheusRule
   values:
     grafana:
       adminPassword: misch
