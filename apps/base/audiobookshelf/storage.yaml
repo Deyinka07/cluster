@@ -2,43 +2,46 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: metadata-data-pvc
+  namespace: audiobookshelf
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: podcasts-data-pvc
+  namespace: audiobookshelf
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
-
-
+      storage: 56Gi
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: audiobooks-data-pvc
+  namespace: audiobookshelf
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
-
+      storage: 56Gi
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: config-data-pvc
+  namespace: audiobookshelf
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi      
+      storage: 1Gi
