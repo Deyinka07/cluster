@@ -4,6 +4,4 @@ metadata:
   name: audiobookshelf-config
   namespace: audiobookshelf
 data:
-  # Add any configuration needed by audiobookshelf
-  # You can add more as needed
   PORT: "3005"
