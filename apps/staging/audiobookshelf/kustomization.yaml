@@ -4,3 +4,4 @@ resources:
   - ../../base/audiobookshelf
   - ingress.yaml
   - audiobookshelf-tunnel-secret.yaml
+  - cloudflare.yaml
