@@ -26,3 +26,57 @@ This repository contains the complete Infrastructure as Code (IaC) for my self-h
 | **Secure Access** | Cloudflare Tunnels |
 | **Monitoring** | Prometheus + Grafana |
 | **Dependency Management** | Renovate |
+
+## Applications
+
+Currently self-hosting:
+
+- **[Linkding](https://github.com/sissbruecker/linkding)** - Bookmark manager
+- **[Audiobookshelf](https://www.audiobookshelf.org/)** - Audiobook and podcast server
+- **Prometheus + Grafana** - Monitoring and observability stack
+
+All applications are:
+
+- Deployed declaratively via Kustomize manifests
+- Automatically synced from this Git repository
+- Secured with encrypted TLS certificates
+- Accessible externally via Cloudflare Tunnels
+
+## Repository Structure
+```
+.
+├── apps/
+│   ├── base/                 # Base application configurations
+│   └── staging/              # Environment-specific overlays
+├── clusters/
+│   └── saltechng/           # Cluster bootstrap configuration
+├── infrastructure/
+│   └── controllers/         # Infrastructure controllers (Renovate, etc.)
+└── monitoring/
+    ├── configs/             # Monitoring configurations
+    └── controllers/         # Prometheus operator deployment
+```
+
+Following the [FluxCD recommended structure](https://fluxcd.io/flux/guides/repository-structure/) with base and overlay patterns for environment separation.
+
+## Key Features
+
+### GitOps Automation
+
+- **FluxCD** continuously monitors this repository and automatically applies changes
+- Pull-based model - cluster pulls configuration, nothing pushes to cluster
+- Self-healing - if manual changes are made, Flux reverts to Git state
+
+### Secrets Management
+
+- All secrets encrypted with **SOPS** using **AGE** encryption
+- Private keys stored only in cluster (not in Git)
+- Flux automatically decrypts secrets during deployment
+- Zero plaintext credentials in version control
+
+### Secure External Access
+
+- **Cloudflare Tunnels** provide secure access without exposing home IP
+- No port forwarding required
+- Zero-trust network access
+- Automatic HTTPS with Cloudflare-managed certificates
