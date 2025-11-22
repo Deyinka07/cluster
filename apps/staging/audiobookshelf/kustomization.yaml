@@ -5,3 +5,4 @@ resources:
   - ingress.yaml
   - audiobookshelf-tunnel-secret.yaml
   - cloudflare.yaml
+  - cloudflare-secret.yaml
