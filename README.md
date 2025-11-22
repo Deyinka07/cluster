@@ -80,3 +80,87 @@ Following the [FluxCD recommended structure](https://fluxcd.io/flux/guides/repos
 - No port forwarding required
 - Zero-trust network access
 - Automatic HTTPS with Cloudflare-managed certificates
+
+### Monitoring & Observability
+
+- **Prometheus** for metrics collection
+- **Grafana** for visualization and dashboards
+- Full cluster and application monitoring
+
+### Automated Maintenance
+
+- **Renovate** automatically creates PRs for dependency updates
+- Keeps all applications and infrastructure components up-to-date
+- Automated security patching
+
+## Getting Started
+
+### Prerequisites
+
+- Kubernetes cluster (K3s recommended)
+- FluxCD CLI installed
+- SOPS with AGE configured
+- GitHub repository access
+
+### Bootstrap
+
+1. **Install Flux:**
+```bash
+flux bootstrap github \
+  --owner=Deyinka07 \
+  --repository=cluster \
+  --branch=main \
+  --path=clusters/saltechng
+```
+
+2. **Configure SOPS:**
+```bash
+# Generate AGE key
+age-keygen -o age.agekey
+
+# Create Flux secret
+kubectl create secret generic sops-age \
+  --namespace=flux-system \
+  --from-file=age.agekey=./age.agekey
+```
+
+3. **Flux will automatically:**
+   - Deploy all infrastructure controllers
+   - Set up monitoring stack
+   - Deploy applications
+   - Configure ingress and certificates
+
+## Current Goals
+
+- [ ] Implement automated backup strategy for persistent data
+- [ ] Expand monitoring with custom Grafana dashboards
+- [ ] Deploy additional self-hosted applications
+- [ ] Add comprehensive disaster recovery procedures
+- [ ] Document architecture decisions and setup process
+- [ ] Implement resource requests/limits optimization
+
+## Recently Completed
+
+- [x] Automated dependency updates with Renovate
+- [x] Cloudflare Tunnel integration for secure external access
+- [x] SOPS encryption for secrets management
+- [x] Full monitoring stack deployment
+
+## Architecture
+
+**Compute:** K3s cluster running on Proxmox VMs  
+**Networking:** Traefik ingress with Cloudflare Tunnels  
+**Storage:** Local path provisioner  
+**GitOps:** FluxCD with automatic reconciliation  
+**Security:** SOPS-encrypted secrets, non-root containers, network policies
+
+## Lessons Learned
+
+Building this homelab taught me:
+
+- Production GitOps workflows and best practices
+- Kubernetes secrets management at scale
+- Troubleshooting complex networking and ingress issues
+- Infrastructure as Code principles
+- Importance of proper monitoring and observability
+
