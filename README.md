@@ -1,4 +1,4 @@
-#  Kubernetes Homelab
+#  Bare-Metal Kubernetes Platform Implementation
 
 > Production-grade Kubernetes infrastructure implementing GitOps workflows, encrypted secrets management, and secure external access via Cloudflare Tunnels.
 
